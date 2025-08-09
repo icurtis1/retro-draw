@@ -4,7 +4,7 @@
 
 <img src="./public/demo.gif" alt="Demo" width="800" />
 
-A nostalgic pixel-perfect drawing application inspired by classic 90s software. Create digital art with authentic retro tools and aesthetics.
+A nostalgic pixel-perfect drawing application inspired by classic 90s software. Create digital art with authentic retro tools and aesthetics developed with bolt.new and gpt-5.
 
 ## Features
 
