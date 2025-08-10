@@ -257,53 +257,65 @@ function App() {
   return (
     <div className="h-screen bg-white font-mono text-sm flex flex-col overflow-hidden">
       {/* Top Tool Panels - Horizontal Layout */}
-      <div className="flex border-b border-dashed border-gray-300">
-        <div className="flex-1 min-w-0">
-          <Toolbar currentTool={drawingState.tool} onToolChange={handleToolChange} />
+      <div className="flex flex-1 overflow-hidden">
+        {/* Tools Section */}
+        <div className="flex-1 min-w-0 border-r border-dashed border-gray-300 flex flex-col">
+          <div className="border-b border-dashed border-gray-300">
+            <Toolbar currentTool={drawingState.tool} onToolChange={handleToolChange} />
+          </div>
         </div>
-        <div className="flex-1 min-w-0">
-          <BrushSettings
-            brushSize={drawingState.brushSize}
-            color={drawingState.color}
-            currentTool={drawingState.tool}
-            selectedStamp={drawingState.selectedStamp}
-            onBrushSizeChange={setBrushSize}
-            onColorChange={setColor}
-            onStampChange={setStamp}
-          />
+        
+        {/* Size/Settings Section */}
+        <div className="flex-1 min-w-0 border-r border-dashed border-gray-300 flex flex-col">
+          <div className="border-b border-dashed border-gray-300">
+            <BrushSettings
+              brushSize={drawingState.brushSize}
+              color={drawingState.color}
+              currentTool={drawingState.tool}
+              selectedStamp={drawingState.selectedStamp}
+              onBrushSizeChange={setBrushSize}
+              onColorChange={setColor}
+              onStampChange={setStamp}
+            />
+          </div>
+          
+          {/* Canvas Area */}
+          <div className="flex-1 px-1 py-1 flex items-center justify-center overflow-hidden">
+            <canvas
+              ref={canvasRef}
+              width={1000}
+              height={400}
+              className="w-full h-full max-h-full touch-none border border-dashed border-gray-300 block"
+              style={{ 
+                aspectRatio: '2.5/1',
+                maxWidth: '100%',
+                maxHeight: '100%',
+                display: 'block'
+              }}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseUp}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            />
+          </div>
         </div>
-        <div className="flex-1 min-w-0">
-          <ActionPanel
-            onUndo={undo}
-            onSave={saveImage}
-            onClear={clearCanvas}
-            canUndo={drawingState.undoStack.length > 0}
-          />
+        
+        {/* Actions Section */}
+        <div className="flex-1 min-w-0 flex flex-col">
+          <div className="border-b border-dashed border-gray-300">
+            <ActionPanel
+              onUndo={undo}
+              onSave={saveImage}
+              onClear={clearCanvas}
+              canUndo={drawingState.undoStack.length > 0}
+            />
+          </div>
         </div>
       </div>
 
-      {/* Full-Width Canvas with Minimal Padding */}
-      <div className="flex-1 px-1 py-1 flex items-center justify-center overflow-hidden">
-        <canvas
-          ref={canvasRef}
-          width={1000}
-          height={400}
-          className="w-full h-full max-h-full touch-none border border-dashed border-gray-300 block"
-          style={{ 
-            aspectRatio: '2.5/1',
-            maxWidth: '100%',
-            maxHeight: '100%',
-            display: 'block'
-          }}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-          onMouseLeave={handleMouseUp}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-        />
-      </div>
 
       {/* Bottom Status Panel */}
       <div className="flex border-t border-dashed border-gray-300">
