@@ -3,41 +3,13 @@ import type { Point } from '../types';
 export const getMousePos = (canvas: HTMLCanvasElement, e: React.MouseEvent): Point => {
   const rect = canvas.getBoundingClientRect();
   
-  // Account for any CSS scaling/letterboxing
-  const canvasAspectRatio = canvas.width / canvas.height;
-  const containerAspectRatio = rect.width / rect.height;
-  
-  let actualCanvasRect = rect;
-  
-  // If container is wider than canvas aspect ratio, there's horizontal letterboxing
-  if (containerAspectRatio > canvasAspectRatio) {
-    const actualWidth = rect.height * canvasAspectRatio;
-    const offsetX = (rect.width - actualWidth) / 2;
-    actualCanvasRect = {
-      left: rect.left + offsetX,
-      top: rect.top,
-      width: actualWidth,
-      height: rect.height
-    };
-  }
-  // If container is taller than canvas aspect ratio, there's vertical letterboxing
-  else if (containerAspectRatio < canvasAspectRatio) {
-    const actualHeight = rect.width / canvasAspectRatio;
-    const offsetY = (rect.height - actualHeight) / 2;
-    actualCanvasRect = {
-      left: rect.left,
-      top: rect.top + offsetY,
-      width: rect.width,
-      height: actualHeight
-    };
-  }
-  
-  const scaleX = canvas.width / actualCanvasRect.width;
-  const scaleY = canvas.height / actualCanvasRect.height;
+  // Simple scaling calculation - canvas internal size vs displayed size
+  const scaleX = canvas.width / rect.width;
+  const scaleY = canvas.height / rect.height;
   
   return {
-    x: (e.clientX - actualCanvasRect.left) * scaleX,
-    y: (e.clientY - actualCanvasRect.top) * scaleY
+    x: (e.clientX - rect.left) * scaleX,
+    y: (e.clientY - rect.top) * scaleY
   };
 };
 
