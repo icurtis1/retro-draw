@@ -186,13 +186,13 @@ function App() {
     if (!canvas || e.touches.length !== 1) return;
 
     const touch = e.touches[0];
-    const rect = canvas.getBoundingClientRect();
-    const scaleX = canvas.width / rect.width;
-    const scaleY = canvas.height / rect.height;
-    const point = {
-      x: (touch.clientX - rect.left) * scaleX,
-      y: (touch.clientY - rect.top) * scaleY
-    };
+    
+    // Use the same positioning logic as mouse events
+    const mockEvent = {
+      clientX: touch.clientX,
+      clientY: touch.clientY
+    } as React.MouseEvent;
+    const point = getMousePos(canvas, mockEvent);
     
     // Handle text tool
     if (drawingState.tool === 'text') {
@@ -228,13 +228,12 @@ function App() {
     if (!canvas || e.touches.length !== 1) return;
     
     const touch = e.touches[0];
-    const rect = canvas.getBoundingClientRect();
-    const scaleX = canvas.width / rect.width;
-    const scaleY = canvas.height / rect.height;
-    const point = {
-      x: (touch.clientX - rect.left) * scaleX,
-      y: (touch.clientY - rect.top) * scaleY
-    };
+    
+    const mockEvent = {
+      clientX: touch.clientX,
+      clientY: touch.clientY
+    } as React.MouseEvent;
+    const point = getMousePos(canvas, mockEvent);
     
     continueDrawing(point);
   };
@@ -245,13 +244,12 @@ function App() {
     if (!canvas) return;
     
     const touch = e.changedTouches[0];
-    const rect = canvas.getBoundingClientRect();
-    const scaleX = canvas.width / rect.width;
-    const scaleY = canvas.height / rect.height;
-    const point = {
-      x: (touch.clientX - rect.left) * scaleX,
-      y: (touch.clientY - rect.top) * scaleY
-    };
+    
+    const mockEvent = {
+      clientX: touch.clientX,
+      clientY: touch.clientY
+    } as React.MouseEvent;
+    const point = getMousePos(canvas, mockEvent);
     
     endDrawing(point);
   };
@@ -292,10 +290,10 @@ function App() {
           height={400}
           className="w-full h-full max-h-full touch-none border border-dashed border-gray-300 block"
           style={{ 
-            aspectRatio: '5/2', 
-            objectFit: 'contain',
+            aspectRatio: '2.5/1',
             maxWidth: '100%',
-            maxHeight: '100%'
+            maxHeight: '100%',
+            display: 'block'
           }}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
