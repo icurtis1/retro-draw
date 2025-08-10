@@ -285,13 +285,18 @@ function App() {
       </div>
 
       {/* Full-Width Canvas with Minimal Padding */}
-      <div className="flex-1 px-2 py-2 flex items-center justify-center overflow-hidden">
+      <div className="flex-1 px-1 py-1 flex items-center justify-center overflow-hidden">
         <canvas
           ref={canvasRef}
           width={1000}
           height={400}
-          className="w-full h-full max-h-full touch-none border border-dashed border-gray-300"
-          style={{ aspectRatio: '5/2', objectFit: 'contain' }}
+          className="w-full h-full max-h-full touch-none border border-dashed border-gray-300 block"
+          style={{ 
+            aspectRatio: '5/2', 
+            objectFit: 'contain',
+            maxWidth: '100%',
+            maxHeight: '100%'
+          }}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUp}
