@@ -35,8 +35,6 @@ export const getMousePos = (canvas: HTMLCanvasElement, e: React.MouseEvent): Poi
   const scaleX = canvas.width / actualCanvasRect.width;
   const scaleY = canvas.height / actualCanvasRect.height;
   
-  const scaleX = canvas.width / rect.width;
-  const scaleY = canvas.height / rect.height;
   return {
     x: (e.clientX - actualCanvasRect.left) * scaleX,
     y: (e.clientY - actualCanvasRect.top) * scaleY
