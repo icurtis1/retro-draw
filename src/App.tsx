@@ -259,7 +259,7 @@ function App() {
   return (
     <div className="h-screen bg-white font-mono text-sm flex flex-col overflow-hidden">
       {/* Main Grid Layout */}
-      <div className="grid gap-0 h-full" style={{ gridTemplateColumns: 'minmax(140px, 200px) 1fr minmax(140px, 200px)', gridTemplateRows: 'auto auto 1fr auto' }}>
+      <div className="grid gap-0 h-full w-full" style={{ gridTemplateColumns: 'minmax(140px, 300px) 1fr minmax(140px, 300px)', gridTemplateRows: 'auto auto 1fr auto' }}>
         
         {/* Top Row */}
         <Toolbar currentTool={drawingState.tool} onToolChange={handleToolChange} />
