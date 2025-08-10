@@ -258,49 +258,52 @@ function App() {
 
   return (
     <div className="h-screen bg-white font-mono text-sm flex flex-col overflow-hidden">
-      {/* Main Grid Layout */}
-      <div className="grid grid-cols-3 gap-0 h-full" style={{ gridTemplateRows: 'auto auto 1fr auto' }}>
-        
-        {/* Top Row */}
-        <Toolbar currentTool={drawingState.tool} onToolChange={handleToolChange} />
-        
-        <BrushSettings
-          brushSize={drawingState.brushSize}
-          color={drawingState.color}
-          currentTool={drawingState.tool}
-          selectedStamp={drawingState.selectedStamp}
-          onBrushSizeChange={setBrushSize}
-          onColorChange={setColor}
-          onStampChange={setStamp}
-        />
-        
-        <ActionPanel
-          onUndo={undo}
-          onSave={saveImage}
-          onClear={clearCanvas}
-          canUndo={drawingState.undoStack.length > 0}
-        />
-
-        {/* Middle Row - Canvas spans all columns */}
-        <div className="col-span-3 border-b border-dashed border-gray-300 flex items-center justify-center overflow-hidden">
-          <div className="border border-dashed border-gray-300 relative" style={{ height: 'calc(100vh - 280px)', aspectRatio: '5/2' }}>
-            <canvas
-              ref={canvasRef}
-              width={1000}
-              height={400}
-              className="w-full h-full touch-none object-contain"
-              onMouseDown={handleMouseDown}
-              onMouseMove={handleMouseMove}
-              onMouseUp={handleMouseUp}
-              onMouseLeave={handleMouseUp}
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
-            />
-          </div>
+      {/* Top Tool Panels - Horizontal Layout */}
+      <div className="flex border-b border-dashed border-gray-300">
+        <div className="flex-1 min-w-0">
+          <Toolbar currentTool={drawingState.tool} onToolChange={handleToolChange} />
         </div>
+        <div className="flex-1 min-w-0">
+          <BrushSettings
+            brushSize={drawingState.brushSize}
+            color={drawingState.color}
+            currentTool={drawingState.tool}
+            selectedStamp={drawingState.selectedStamp}
+            onBrushSizeChange={setBrushSize}
+            onColorChange={setColor}
+            onStampChange={setStamp}
+          />
+        </div>
+        <div className="flex-1 min-w-0">
+          <ActionPanel
+            onUndo={undo}
+            onSave={saveImage}
+            onClear={clearCanvas}
+            canUndo={drawingState.undoStack.length > 0}
+          />
+        </div>
+      </div>
 
-        {/* Bottom Row - Status Panels */}
+      {/* Full-Width Canvas with Minimal Padding */}
+      <div className="flex-1 px-2 py-2 flex items-center justify-center overflow-hidden">
+        <canvas
+          ref={canvasRef}
+          width={1000}
+          height={400}
+          className="w-full h-full max-h-full touch-none border border-dashed border-gray-300"
+          style={{ aspectRatio: '5/2', objectFit: 'contain' }}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseUp}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+        />
+      </div>
+
+      {/* Bottom Status Panel */}
+      <div className="flex border-t border-dashed border-gray-300">
         <StatusPanel
           isDrawing={drawingState.isDrawing}
           isTyping={isTyping}

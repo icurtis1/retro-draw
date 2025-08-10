@@ -21,9 +21,9 @@ export const StatusPanel: React.FC<StatusPanelProps> = ({
   currentText,
 }) => {
   return (
-    <>
-      {/* Bottom Left - Status */}
-      <div className="border-r border-dashed border-gray-300 p-4">
+    <div className="flex w-full">
+      {/* Status */}
+      <div className="flex-1 border-r border-dashed border-gray-300 p-3">
         <div className="space-y-2">
           <div className="text-xs text-gray-500 mb-2">STATUS</div>
           <div className="text-xs">
@@ -38,8 +38,8 @@ export const StatusPanel: React.FC<StatusPanelProps> = ({
         </div>
       </div>
 
-      {/* Bottom Center - Current Tool Info */}
-      <div className="border-r border-dashed border-gray-300 p-4">
+      {/* Current Tool Info */}
+      <div className="flex-1 border-r border-dashed border-gray-300 p-3">
         <div className="space-y-2">
           <div className="text-xs text-gray-500 mb-2">CURRENT</div>
           <div className="text-xs">{currentTool.toUpperCase()}</div>
@@ -54,8 +54,8 @@ export const StatusPanel: React.FC<StatusPanelProps> = ({
         </div>
       </div>
 
-      {/* Bottom Right - Canvas Info */}
-      <div className="border-dashed border-gray-300 p-4">
+      {/* Canvas Info */}
+      <div className="flex-1 p-3">
         <div className="space-y-2">
           <div className="text-xs text-gray-500 mb-2">CANVAS</div>
           <div className="text-xs">1200×550</div>
@@ -65,6 +65,6 @@ export const StatusPanel: React.FC<StatusPanelProps> = ({
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };

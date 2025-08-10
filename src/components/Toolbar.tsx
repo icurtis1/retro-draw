@@ -19,16 +19,16 @@ const tools = [
 
 export const Toolbar: React.FC<ToolbarProps> = ({ currentTool, onToolChange }) => {
   return (
-    <div className="border-r border-b border-dashed border-gray-300 p-4">
+    <div className="border-r border-dashed border-gray-300 p-3">
       <div className="space-y-4">
         <div>
           <div className="text-xs text-gray-500 mb-2">TOOLS</div>
-          <div className="space-y-1">
+          <div className="grid grid-cols-2 gap-1 text-xs">
             {tools.map(({ tool, icon: Icon, label }) => (
               <button
                 key={tool}
                 onClick={() => onToolChange(tool as Tool)}
-                className={`w-full text-left px-2 py-1 text-xs transition-colors ${
+                className={`text-left px-2 py-1 text-xs transition-colors ${
                   currentTool === tool
                     ? 'bg-gray-100 text-black'
                     : 'text-gray-500 hover:text-black'

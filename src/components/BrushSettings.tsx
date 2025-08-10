@@ -30,7 +30,7 @@ export const BrushSettings: React.FC<BrushSettingsProps> = ({
   onStampChange,
 }) => {
   return (
-    <div className="border-r border-b border-dashed border-gray-300 p-4">
+    <div className="border-r border-dashed border-gray-300 p-3">
       <div className="space-y-4">
         <div>
           <div className="text-xs text-gray-500 mb-2">SIZE</div>
