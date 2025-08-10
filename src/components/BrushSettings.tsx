@@ -14,7 +14,9 @@ interface BrushSettingsProps {
 const colorPresets = ['#000000', '#404040', '#808080', '#c0c0c0', '#e0e0e0'];
 const stampOptions: { type: StampType; label: string }[] = [
   { type: 'computer', label: 'MAC' },
+  { type: 'disk', label: 'DISK' },
   { type: 'bomb', label: 'BOMB' },
+  { type: 'hand', label: 'HAND' },
   { type: 'trash', label: 'TRASH' },
 ];
 
@@ -76,18 +78,18 @@ export const BrushSettings: React.FC<BrushSettingsProps> = ({
         {currentTool === 'stamp' && (
           <div className="flex-1">
             <div className="text-xs text-gray-500 mb-2">STAMPS</div>
-            <div className="grid grid-cols-2 gap-1 text-xs">
-              {stampOptions.map(({ type, label }) => (
+            <div className="grid grid-cols-1 gap-1 text-xs">
+              {stampOptions.slice(0, 3).map(({ type, label }) => (
                 <button
                   key={type}
                   onClick={() => onStampChange(type)}
-                  className={`text-center px-1 py-1 text-xs transition-colors ${
+                  className={`text-left px-2 py-1 text-xs transition-colors ${
                     selectedStamp === type
                       ? 'bg-gray-100 text-black'
                       : 'text-gray-500 hover:text-black'
                   }`}
                 >
-                  <div className="flex items-center justify-center space-x-1">
+                  <div className="flex items-center space-x-1">
                     {selectedStamp === type && (
                       <span className="inline-block w-1.5 h-1.5 bg-black rounded-full mr-1"></span>
                     )}
