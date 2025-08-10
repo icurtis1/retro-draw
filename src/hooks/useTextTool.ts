@@ -49,6 +49,9 @@ export const useTextTool = ({ canvasRef, brushSize, color, onSaveState }: UseTex
     ctx.fillStyle = color;
     ctx.textBaseline = 'top';
     
+    // Disable smoothing for crispy text
+    ctx.imageSmoothingEnabled = false;
+    
     // Draw current text if any
     if (textState.currentText) {
       ctx.fillText(textState.currentText, textState.textPosition.x, textState.textPosition.y);
@@ -101,6 +104,7 @@ export const useTextTool = ({ canvasRef, brushSize, color, onSaveState }: UseTex
     ctx.font = `${brushSize * 8}px monospace`;
     ctx.fillStyle = color;
     ctx.textBaseline = 'top';
+    ctx.imageSmoothingEnabled = false;
     ctx.fillText(textState.currentText, textState.textPosition.x, textState.textPosition.y);
     
     console.log('Text committed:', textState.currentText);

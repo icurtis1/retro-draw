@@ -94,6 +94,9 @@ export const useDrawing = ({ canvasRef }: UseDrawingProps) => {
     ctx.lineWidth = drawingState.brushSize;
     ctx.lineCap = 'round';
     ctx.lineJoin = 'round';
+    
+    // Ensure crispy lines for each drawing operation
+    ctx.imageSmoothingEnabled = false;
 
     if (drawingState.tool === 'brush') {
       ctx.globalCompositeOperation = 'source-over';

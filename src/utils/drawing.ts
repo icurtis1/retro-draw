@@ -43,6 +43,13 @@ export const drawCircle = (ctx: CanvasRenderingContext2D, from: Point, to: Point
 export const initializeCanvas = (canvas: HTMLCanvasElement) => {
   const ctx = canvas.getContext('2d');
   if (ctx) {
+    // Disable smoothing for crispy, pixel-perfect lines
+    ctx.imageSmoothingEnabled = false;
+    (ctx as any).webkitImageSmoothingEnabled = false;
+    (ctx as any).mozImageSmoothingEnabled = false;
+    (ctx as any).msImageSmoothingEnabled = false;
+    
+    // Set white background
     ctx.fillStyle = '#ffffff';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
   }
