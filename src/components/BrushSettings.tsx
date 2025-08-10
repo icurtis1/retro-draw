@@ -14,9 +14,7 @@ interface BrushSettingsProps {
 const colorPresets = ['#000000', '#404040', '#808080', '#c0c0c0', '#e0e0e0'];
 const stampOptions: { type: StampType; label: string }[] = [
   { type: 'computer', label: 'MAC' },
-  { type: 'disk', label: 'DISK' },
   { type: 'bomb', label: 'BOMB' },
-  { type: 'hand', label: 'HAND' },
   { type: 'trash', label: 'TRASH' },
 ];
 
