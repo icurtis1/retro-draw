@@ -19,7 +19,7 @@ const tools = [
 
 export const Toolbar: React.FC<ToolbarProps> = ({ currentTool, onToolChange }) => {
   return (
-    <div className="border-r border-b border-dashed border-gray-300 p-6">
+    <div className="border-r border-b border-dashed border-gray-300 p-4">
       <div className="space-y-4">
         <div>
           <div className="text-xs text-gray-500 mb-2">TOOLS</div>

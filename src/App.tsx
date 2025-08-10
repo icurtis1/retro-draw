@@ -282,7 +282,7 @@ function App() {
         />
 
         {/* Middle Row - Canvas spans all columns */}
-        <div className="col-span-3 border-b border-dashed border-gray-300 p-3 flex items-center justify-center overflow-hidden">
+        <div className="col-span-3 border-b border-dashed border-gray-300 flex items-center justify-center overflow-hidden">
           <div className="border border-dashed border-gray-300 relative" style={{ height: 'calc(100vh - 280px)', aspectRatio: '5/2' }}>
             <canvas
               ref={canvasRef}

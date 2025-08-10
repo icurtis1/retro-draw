@@ -15,7 +15,7 @@ export const ActionPanel: React.FC<ActionPanelProps> = ({
   canUndo,
 }) => {
   return (
-    <div className="border-b border-dashed border-gray-300 p-6">
+    <div className="border-b border-dashed border-gray-300 p-4">
       <div className="space-y-2">
         <div className="text-xs text-gray-500 mb-3">ACTIONS</div>
         <button
